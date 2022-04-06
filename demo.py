@@ -39,7 +39,7 @@ def upload():
     if form.validate_on_submit():
         pdf_data = form.pdf_file.data
         document = fitz.open(stream=pdf_data.read(), filetype='pdf')
-        page_data = document.get_page_pixmap(0, dpi=72).pil_tobytes(format='JPEG')
+        page_data = document[0].get_pixmap(dpi=72).pil_tobytes(format='JPEG')
         image_str = base64.b64encode(page_data).decode('utf-8')
 
     return render_template('upload.html', form=form, image_str=image_str)
