@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}TablesExtractorWebDemo - Upload{% endblock %}
+
+{% block page_content %}
+{{ wtf.quick_form(form, enctype="multipart/form-data") }}
+{% if image_str %}
+<table>
+    <tr>
+        <td>
+            <img src="data:image/jpeg;base64, {{ image_str }}" />
+        </td>
+        <td valign="top">
+            <table class="table table-striped">
+                <tr>
+                    <td>Fiscal 2002</td>
+                    <td>High</td>
+                    <td>Low</td>
+                </tr>
+                <tr>
+                    <td>First Quater (ended January 31, 2002)</td>
+                    <td>$33.30</td>
+                    <td>$22.06</td>
+                </tr>
+                <tr>
+                    <td>Second Quarter (ended April 30, 2002)</td>
+                    <td>$38.00</td>
+                    <td>$24.83</td>
+                </tr>
+                <tr>
+                    <td>Third Quarter (ended July 31, 2002)</td>
+                    <td>$31.25</td>
+                    <td>$16.00</td>
+                </tr>
+                <tr>
+                    <td>Fourth Quarter (ended October 31, 2002)</td>
+                    <td>$18.88</td>
+                    <td>$10.50</td>
+                </tr>
+            </table>
+            <br>
+            <table class="table table-striped">
+                <tr>
+                    <td>Fiscal 2003</td>
+                    <td>High</td>
+                    <td>Low</td>
+                </tr>
+                <tr>
+                    <td>First Quater (ended January 31, 2002)</td>
+                    <td>$20.30</td>
+                    <td>$13.19</td>
+                </tr>
+                <tr>
+                    <td>Second Quarter (ended April 30, 2002)</td>
+                    <td>$16.82</td>
+                    <td>$11.30</td>
+                </tr>
+                <tr>
+                    <td>Third Quarter (ended July 31, 2002)</td>
+                    <td>$22.64</td>
+                    <td>$15.48</td>
+                </tr>
+                <tr>
+                    <td>Fourth Quarter (ended October 31, 2002)</td>
+                    <td>$26.48</td>
+                    <td>$20.31</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+{% endif %}
+{% endblock %}
