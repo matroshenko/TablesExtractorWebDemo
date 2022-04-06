@@ -52,7 +52,7 @@ def process_file_data(data):
         for table in tables:
             exporter = TableToHTMLExporter(table.cells, css_class="table table-striped")
             root.append(exporter.export())
-        tables_str = ET.tostring(root, ecoding='utf-8', method='html')
+        tables_str = ET.tostring(root, encoding='unicode', method='html')
         
         result.append((page_image_str, tables_str))
     

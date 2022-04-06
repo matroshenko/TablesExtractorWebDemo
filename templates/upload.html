@@ -9,11 +9,11 @@
 <table>
     {% for page_image_str, tables_str in processing_result_data %}
     <tr>
-        <td>
+        <td valign="top">
             <img src="data:image/jpeg;base64, {{ page_image_str }}" />
         </td>
         <td valign="top">
-            {{ tables_str }}
+            {{ tables_str|safe }}
         </td>
     </tr>
     {% endfor %}
