@@ -8,7 +8,7 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed, FileRequired, FileField
 from wtforms import SubmitField
 
-from pdf2image import convert_from_bytes
+import fitz
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hard to guess string'
@@ -38,12 +38,9 @@ def upload():
     form = UploadForm()
     if form.validate_on_submit():
         pdf_data = form.pdf_file.data
-        page_images = convert_from_bytes(
-            pdf_data.read(), dpi=72, fmt='jpeg')
-        assert len(page_images) == 1
-        buffered = io.BytesIO()
-        page_images[0].save(buffered, format="JPEG")
-        image_str = base64.b64encode(buffered.getvalue()).decode('utf-8')
+        document = fitz.open(stream=pdf_data.read(), filetype='pdf')
+        page_data = document.get_page_pixmap(0, dpi=72).pil_tobytes(format='JPEG')
+        image_str = base64.b64encode(page_data).decode('utf-8')
 
     return render_template('upload.html', form=form, image_str=image_str)
 
