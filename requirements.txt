@@ -10,3 +10,4 @@ itsdangerous==0.24
 Pillow==9.0.1
 tensorflow==2.8.0
 pymupdf==1.19.6
+tables_extractor/
